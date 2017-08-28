@@ -24,8 +24,9 @@ struct Node
 };
 
 // Function prototypes
-void getData(Node *, int *, int *);
+void initNodes(int *, int *, Node *);
 Node createNode();
+void mapNodes(int *, int *, Node *);
 
 int main(int argc, const char * argv[]) {
     // declare variables to handle input - Complete
@@ -38,6 +39,8 @@ int main(int argc, const char * argv[]) {
     // which specify the edges of the tree
     
     // Need to remove edges such that
+    // all children must have an even number
+    // of nodes
     
     int n, m, u, v;
     cout << "enter n & m" << endl;
@@ -45,41 +48,15 @@ int main(int argc, const char * argv[]) {
     cin >> n >> m;
     cin.ignore();
     
-    // Data is stored in n & m
-    cout << n << " " << m << endl;
-    
     if (n >= 2 && n <= 100){
-        
         //node array to store each node
         Node *nodes = nullptr;
         nodes = new Node[n];
         
-        // do something with input
-        for (int i = 0; i < m; i++){
-            
-            // create new nodes and store in nodes array
-            nodes[i] = createNode();
-            
-            // take in child node edges & clear buffer
-            cin >> u >> v;
-            cout << "values of u & v " << u << " " << v << endl;
-            cin.ignore();
-            
-            // assign values to nodes
-            nodes[i].val = (i + 1);
-            cout << "value of nodes[0]: " << nodes[i].val << endl;
-            
-            // get values u & v and store them in each node
-            if (u == (i + 1)) {
-                nodes[i].e1 = &nodes[u];
-            } else if (v == (i + 1)) {
-                nodes[i].e2 = &nodes[v];
-            }
-            
-            //getData(&nodes[i], &u, &v);
-            
-            
-        }
+        // initialize nodes in Node array
+        initNodes(&m, &n, nodes);
+        
+        // map child nodes
         
     } else{
         // throw exception
@@ -89,7 +66,26 @@ int main(int argc, const char * argv[]) {
     }
     
     
+    
+    
     return 0;
+}
+
+void initNodes(int *m, int *n, Node *nodes){
+    
+    // do something with input
+    for (int i = 0; i <= *m; i++){
+        // create new nodes and store in nodes array
+        nodes[i] = createNode();
+        
+        // initialize values to nodes
+        nodes[i].val = (i + 1);
+        nodes[i].e1 = nullptr;
+        nodes[i].e2 = nullptr;
+        cout << "value of nodes[" << i << "]: " << nodes[i].val << endl;
+    }
+    
+    
 }
 
 Node createNode(){
@@ -98,11 +94,12 @@ Node createNode(){
     return *node;
 }
 
-void getData(Node *node, int *u, int *v) {
-    // initialize root node at i = 0
+void mapNodes(int *u, int *v, Node *nodes){
     
     
 }
+
+
 
 
 
