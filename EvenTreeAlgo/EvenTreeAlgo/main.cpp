@@ -23,7 +23,7 @@ struct Node
     Node *e2;
 };
 
-// Function prototype
+// Function prototypes
 void getData(Node *, int *, int *);
 Node createNode();
 
@@ -40,27 +40,44 @@ int main(int argc, const char * argv[]) {
     // Need to remove edges such that
     
     int n, m, u, v;
+    cout << "enter n & m" << endl;
     
     cin >> n >> m;
     cin.ignore();
     
+    // Data is stored in n & m
+    cout << n << " " << m << endl;
+    
     if (n >= 2 && n <= 100){
+        
         //node array to store each node
         Node *nodes = nullptr;
         nodes = new Node[n];
         
         // do something with input
-        for (int i = 0; i < m; i ++){
+        for (int i = 0; i < m; i++){
             
             // create new nodes and store in nodes array
             nodes[i] = createNode();
             
             // take in child node edges & clear buffer
             cin >> u >> v;
+            cout << "values of u & v " << u << " " << v << endl;
             cin.ignore();
             
+            // assign values to nodes
+            nodes[i].val = (i + 1);
+            cout << "value of nodes[0]: " << nodes[i].val << endl;
+            
             // get values u & v and store them in each node
-            getData(&nodes[i], &u, &v);
+            if (u == (i + 1)) {
+                nodes[i].e1 = &nodes[u];
+            } else if (v == (i + 1)) {
+                nodes[i].e2 = &nodes[v];
+            }
+            
+            //getData(&nodes[i], &u, &v);
+            
             
         }
         
@@ -83,6 +100,7 @@ Node createNode(){
 
 void getData(Node *node, int *u, int *v) {
     // initialize root node at i = 0
+    
     
 }
 
