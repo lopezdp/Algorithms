@@ -19,6 +19,8 @@ int main() {
     // each describing the grid
     int n = gridDescription();
 
+    createGrid(t, n);
+
 
     return 0;
 }
@@ -38,5 +40,19 @@ int gridDescription(){
 }
 
 void createGrid(int t, int n){
+	char ***grid = new char **[t];
+	// Iterates through each test case
+	for(int i = 0; i < t; i++){
+		// Iterates through each row in each test case
+		for(int j = 0; j < n; j++){
+			grid[i] = new char *[n];
 
+			// Iterates through each column in each test case
+			for(int k = 0; k < n; k++){
+				grid[i][j] = new char [n];
+				cin >> grid[i][j][k];
+				cout << "This is 3d output: " << grid[i][j][k] << endl;
+			}
+		}
+	}
 }
